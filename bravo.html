@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firework Animation with Audio</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .wallpaper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        audio {
+            z-index: 1000
+        }
+
+        .image-container {
+            position: absolute;
+            width: 100%;
+            /* Double the width to cover the screen with repeated images */
+            height: 100%;
+            /* Double the height to cover the screen with repeated images */
+            top: 0;
+            left: 0;
+            z-index: 0;
+
+            background: url('tina1.png') repeat-x;
+            animation: slide 20s linear infinite;
+            /* You can adjust the duration and timing function */
+        }
+
+        .image-container2 {
+            position: absolute;
+            width: 200%;
+            /* Double the width to cover the screen with repeated images */
+            height: 100%;
+            /* Double the height to cover the screen with repeated images */
+            top: 100;
+            left: 100;
+            z-index: 0;
+
+            background: url('tina2.png') repeat-x;
+            animation: slide 20s linear infinite;
+            /* You can adjust the duration and timing function */
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wallpaper">
+        
+        <div class="image-container"></div>
+        <div class="image-container2"></div>
+    </div>
+
+    <div class="overlay">
+        <audio id="myAudio" controls>
+            <source src="full.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+        <div>
+            <h1>Dune -> 10</h1>
+            <h1>Recette pour de bon -> 4</h1>
+            <h1>George Sand -> 40</h1>
+        </div>
+    </div>
+</body>
+
+</html>

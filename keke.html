@@ -3,45 +3,46 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        img {
+            height: 500px;
+            width: 600px;
+        }
+
+        .container {
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
 
-    <button id="success">Play Success Sound</button>
-    <br><br>
-    <button id="error">Play Error Sound</button>
+        <img src="queue.png">
+        <img src="nouille.png">
+        <input id="answer" type="text" placeholder="qui suis-je ?">
+        <button id="validate">Valider</button>
+    </div>
 
 </body>
 <script>
-    const context = new window.AudioContext();
+    const validate = document.getElementById('validate');
+    const result = document.getElementById('answer');
 
-    function playFile(filepath) {
-        // see https://jakearchibald.com/2016/sounds-fun/
-        // Fetch the file
-        fetch(filepath)
-            // Read it into memory as an arrayBuffer
-            .then(response => response.arrayBuffer())
-            // Turn it from mp3/aac/whatever into raw audio data
-            .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-            .then(audioBuffer => {
-                // Now we're ready to play!
-                const soundSource = context.createBufferSource();
-                soundSource.buffer = audioBuffer;
-                soundSource.connect(context.destination);
-                soundSource.start();
-            });
-    }
-
-    let successButton = document.querySelector("#success");
-    successButton.addEventListener("click", function () {
-        playFile('https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3');
-    });
-
-    let errorButton = document.querySelector("#error");
-    errorButton.addEventListener("click", function () {
-        playFile('1.mp3');
+    validate.addEventListener('click', evt => {
+        if (result.value === 'quenouille') window.location.replace('bravo.html')
     });
 
 </script>
